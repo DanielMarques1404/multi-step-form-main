@@ -1,54 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --font-dmSans: "DM Sans", sans-serif;
-  --font-bricolageGrotesque: "Bricolage Grotesque", sans-serif;
+  --font-ubuntu: "Ubuntu", sans-serif;
 
-  --color-Neutral-900: hsl(243, 96%, 9%);
-  --color-Neutral-800: hsl(243, 27%, 20%);
-  --color-Neutral-700: hsl(243, 23%, 24%);
-  --color-Neutral-600: hsl(243, 23%, 30%);
-  --color-Neutral-300: hsl(240, 6%, 70%);
-  --color-Neutral-200: hsl(250, 6%, 84%);
-  --color-Neutral-0: hsl(0, 0%, 100%);
-  --color-Orange-500: hsl(28, 100%, 52%);
-  --color-Blue-500: hsl(233, 67%, 56%);
-  --color-Blue-700: hsl(248, 70%, 36%);
+  --color-Red-500: hsl(354, 84%, 75%);
+  --color-Purple-600: hsl(243, 100%, 62%);
+  --color-Blue-950: hsl(213, 96%, 18%);
+  --color-Blue-300: hsl(228, 100%, 84%);
+  --color-Blue-200: hsl(206, 94%, 87%);
 
-  --scrollbar-width: 40px;
-  --scrollbar-thumb-color: hsl(243, 23%, 30%);
-  --scrollbar-track-color: hsl(243, 27%, 20%);
+  --color-Grey-500: hsl(231, 11%, 63%);
+  --color-Purple-200: hsl(229, 24%, 87%);
+  --color-Blue-100: hsl(218, 100%, 97%);
+  --color-Blue-50: hsl(231, 100%, 99%);
+  --color-White: hsl(0, 100%, 100%);
+
 }
 
-.scrollbar-custom {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-}
-
-.scrollbar-custom::-webkit-scrollbar {
-  width: var(--scrollbar-width);
-}
-
-.scrollbar-custom::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-color);
-  border-radius: 4px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
-  border-radius: 4px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: hsl(240, 6%, 70%);
-}
 
 * {
   list-style: none;
+  font-size: 16px;
 }
 
 body {
-  @apply bg-Neutral-900;
+  @apply bg-Blue-100;
 }
 
 h1 {
@@ -63,7 +39,3 @@ h3 {
   @apply text-xl font-bold;
 }
 
-button:focus {
-  outline: 3px solid var(--color-Blue-500);
-  outline-offset: 2px;
-}
