@@ -1,8 +1,10 @@
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import type { ApplicationData } from "../../types/types";
 import { PersonalInfo } from "./PersonalInfo";
+import { useState } from "react";
 
 export const ApplicationForm = () => {
+  const [step, setStep] = useState(1);
   const form = useForm<ApplicationData>({
     defaultValues: {
       personalInfoType: {
@@ -25,10 +27,12 @@ export const ApplicationForm = () => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <PersonalInfo />
-        <button type="submit">Enviar</button>
-      </form>
+      <div className="w-1/3">
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          {step === 1 && <PersonalInfo />}
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
     </FormProvider>
   );
-}
+};

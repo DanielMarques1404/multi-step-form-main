@@ -27,8 +27,12 @@ body {
   @apply bg-Blue-100;
 }
 
+p {
+  @apply font-ubuntu text-Grey-500 text-lg text-start;
+}
+
 h1 {
-  @apply text-6xl font-bold;
+  @apply font-ubuntu text-Blue-950 text-3xl font-bold;
 }
 
 h2 {
