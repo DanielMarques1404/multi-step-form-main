@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import type { ApplicationData } from "../../types/types";
+import { BillingPlanInfo } from "./BillingPlanInfo";
 import { PersonalInfo } from "./PersonalInfo";
-import { SelectPlan } from "./SelectPlan";
 
 export const ApplicationForm = () => {
   const [step, setStep] = useState(1);
@@ -31,7 +31,7 @@ export const ApplicationForm = () => {
         >
           {step === 1 && <PersonalInfo />}
           {/* {step === 2 && <SelectPlan />} */}
-          <SelectPlan />
+          <BillingPlanInfo />
           <button type="submit">Enviar</button>
         </form>
       </div>

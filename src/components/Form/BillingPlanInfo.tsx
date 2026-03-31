@@ -5,7 +5,7 @@ import type { ApplicationData, PlanInfoType } from "../../types/types";
 import { BillingPlan } from "../ui/BillingPlan";
 import { Toggle } from "../ui/Toggle";
 
-export const SelectPlan = () => {
+export const BillingPlanInfo = () => {
   const [plans, setPlans] = useState<PlanInfoType[]>(monthlyPlans);
   const [selectedPlan, setSelectedPlan] = useState(monthlyPlans[0].id);
 
