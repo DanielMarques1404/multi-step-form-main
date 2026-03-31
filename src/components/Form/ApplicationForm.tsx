@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import type { ApplicationData } from "../../types/types";
 import { PersonalInfo } from "./PersonalInfo";
-import { useState } from "react";
+import { SelectPlan } from "./SelectPlan";
 
 export const ApplicationForm = () => {
   const [step, setStep] = useState(1);
@@ -12,11 +13,7 @@ export const ApplicationForm = () => {
         email: "",
         phone: "",
       },
-      planInfoType: {
-        kind: "Arcade",
-        price: 0,
-        billingCycle: "Monthly",
-      },
+      planId: "arcade-monthly",
       addOns: [],
     },
   });
@@ -27,9 +24,14 @@ export const ApplicationForm = () => {
 
   return (
     <FormProvider {...form}>
-      <div className="w-1/3">
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+      <div className="w-full">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex gap-2 items-center justify-center"
+        >
           {step === 1 && <PersonalInfo />}
+          {/* {step === 2 && <SelectPlan />} */}
+          <SelectPlan />
           <button type="submit">Enviar</button>
         </form>
       </div>
