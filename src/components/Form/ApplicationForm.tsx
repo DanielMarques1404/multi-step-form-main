@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import type { ApplicationData } from "../../types/types";
 import { BillingPlanInfo } from "./BillingPlanInfo";
 import { PersonalInfo } from "./PersonalInfo";
+import { AddOnsInfo } from "./AddOnsInfo";
+import { allBillingPlans, monthlyPlans } from "../../lib/plans";
+import { allAddOns, monthlyAddOns } from "../../lib/addons";
+import type { PlanInfoType, AddOnInfoType, ApplicationData } from "../../types/types";
 
 export const ApplicationForm = () => {
   const [step, setStep] = useState(1);
+  const [billingPlans, setBillingPlans] = useState<PlanInfoType[]>(monthlyPlans);
+  const [addonsList, setAddonsList] = useState<AddOnInfoType[]>(monthlyAddOns);
+
+  const changeBillingCycle = (cycle: "Monthly" | "Yearly") => {
+    setBillingPlans(allBillingPlans.filter((plan) => plan.billingCycle === cycle));
+    setAddonsList(allAddOns.filter((addon) => addon.billingCycle === cycle));
+  }
+
   const form = useForm<ApplicationData>({
     defaultValues: {
       personalInfoType: {
@@ -31,7 +42,8 @@ export const ApplicationForm = () => {
         >
           {step === 1 && <PersonalInfo />}
           {/* {step === 2 && <SelectPlan />} */}
-          <BillingPlanInfo />
+          <BillingPlanInfo plansList={billingPlans} changeBillingCycle={changeBillingCycle} />
+          <AddOnsInfo addonsList={addonsList} />
           <button type="submit">Enviar</button>
         </form>
       </div>

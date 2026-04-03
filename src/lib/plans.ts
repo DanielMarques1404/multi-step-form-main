@@ -53,3 +53,4 @@ const yearlyPro: PlanInfoType = {
 
 export const monthlyPlans = [monthlyArcade, monthlyAdvanced, monthlyPro];
 export const yearlyPlans = [yearlyArcade, yearlyAdvanced, yearlyPro];
+export const allBillingPlans = [...monthlyPlans, ...yearlyPlans];

@@ -5,14 +5,19 @@ import type { PlanInfoType } from "../../types/types";
 type BillingPlanProps = InputHTMLAttributes<HTMLInputElement> & {
   plan: PlanInfoType;
   selected: boolean;
-  onCheck: (planId: string) => void;
+  onselect: (planId: string) => void;
 };
 
-export const BillingPlan = (props: BillingPlanProps) => {
-  const [isSelected, setIsSelected] = useState(props.selected);
+export const BillingPlan = ({
+  plan,
+  selected,
+  onselect,
+  ...inputProps
+}: BillingPlanProps) => {
+  const [isSelected, setIsSelected] = useState(selected);
   useEffect(() => {
-    setIsSelected(props.selected);
-  }, [props.selected]);
+    setIsSelected(selected);
+  }, [selected]);
 
   return (
     <label
@@ -20,26 +25,26 @@ export const BillingPlan = (props: BillingPlanProps) => {
         "flex items-center justify-start gap-4 border border-Grey-500 rounded-md p-4",
         isSelected && "border-Blue-950 border-2",
       )}
-      onClick={() => props.onCheck(props.plan.id)}
+      onClick={() => onselect(plan.id)}
     >
       <input
-        {...props}
+        {...inputProps}
         type="radio"
-        id={props.plan.id}
-        value={props.plan.id}
+        id={plan.id}
+        value={plan.id}
         className="hidden"
         checked={isSelected}
       />
-      <img src={props.plan.icon} alt={props.plan.kind} />
+      <img src={plan.icon} alt={plan.kind} />
       <div className="flex flex-col items-start">
-        <h3 className="font-bold text-lg">{props.plan.kind}</h3>
+        <h3 className="font-bold text-lg">{plan.kind}</h3>
         <p className="text-Grey-500">
-          ${props.plan.price}/
-          {props.plan.billingCycle === "Yearly" ? "yr" : "mo"}
+          ${plan.price}/
+          {plan.billingCycle === "Yearly" ? "yr" : "mo"}
         </p>
-        {props.plan.trialPeriod && (
+        {plan.trialPeriod && (
           <p className="text-green-500 font-semibold">
-            {props.plan.trialPeriod}
+            {plan.trialPeriod}
           </p>
         )}
       </div>

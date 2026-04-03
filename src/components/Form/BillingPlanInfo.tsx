@@ -1,27 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { monthlyPlans, yearlyPlans } from "../../lib/plans";
 import type { ApplicationData, PlanInfoType } from "../../types/types";
 import { BillingPlan } from "../ui/BillingPlan";
 import { Toggle } from "../ui/Toggle";
 
-export const BillingPlanInfo = () => {
-  const [plans, setPlans] = useState<PlanInfoType[]>(monthlyPlans);
-  const [selectedPlan, setSelectedPlan] = useState(monthlyPlans[0].id);
+type BillingPlanInfoProps = {
+  plansList: PlanInfoType[];
+  changeBillingCycle: (cycle: "Monthly" | "Yearly") => void;
+};
+
+export const BillingPlanInfo = ({
+  plansList,
+  changeBillingCycle,
+}: BillingPlanInfoProps) => {
+  // const [plans, setPlans] = useState<PlanInfoType[]>(plansList);
+  const [selectedPlan, setSelectedPlan] = useState(plansList[0].id);
 
   const { register, setValue } = useFormContext<ApplicationData>();
 
-  const togglePlans = (value: string) => {
-    if (value === "Yearly") {
-      setPlans(yearlyPlans);
-      setSelectedPlan(yearlyPlans[0].id);
-      setValue("planId", yearlyPlans[0].id);
-    } else {
-      setPlans(monthlyPlans);
-      setSelectedPlan(monthlyPlans[0].id);
-      setValue("planId", monthlyPlans[0].id);
-    }
-  };
+  useEffect(() => {
+    setSelectedPlan(plansList[0].id);
+    setValue("planId", plansList[0].id);
+  }, [plansList]);
+
+  // const togglePlans = (value: string) => {
+  //   if (value === "Yearly") {
+  //     setPlans(yearlyPlans);
+  //     setSelectedPlan(yearlyPlans[0].id);
+  //     setValue("planId", yearlyPlans[0].id);
+  //   } else {
+  //     setPlans(monthlyPlans);
+  //     setSelectedPlan(monthlyPlans[0].id);
+  //     setValue("planId", monthlyPlans[0].id);
+  //   }
+  // };
 
   return (
     <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">
@@ -29,20 +41,20 @@ export const BillingPlanInfo = () => {
       <p>You have the option of monthly or yearly billing.</p>
       <div className="flex flex-col gap-2 w-full">
         <ul className="flex flex-col gap-2">
-          {plans.map((plan, idx) => (
+          {plansList.map((plan, idx) => (
             <li key={`plan-${idx}`} value={plan.id}>
               <BillingPlan
-                onCheck={setSelectedPlan}
+                {...register("planId")}
                 plan={plan}
                 selected={plan.id === selectedPlan}
-                {...register("planId")}
+                onselect={setSelectedPlan}
               />
             </li>
           ))}
         </ul>
         <Toggle
-          selected={plans === monthlyPlans ? "Monthly" : "Yearly"}
-          onToggle={togglePlans}
+          cycleDefault={plansList[0].billingCycle}
+          onToggle={changeBillingCycle}
         />
       </div>
     </section>

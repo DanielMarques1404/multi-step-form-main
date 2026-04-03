@@ -14,12 +14,15 @@ export type PlanInfoType = {
 };
 
 export type AddOnInfoType = {
+  id: string;
   name: string;
-  price: number;
+  description: string;
+  price: string;
+  billingCycle: "Monthly" | "Yearly";
 };
 
 export type ApplicationData = {
   personalInfoType: PersonalInfoType;
   planId: string;
-  addOns: AddOnInfoType[];
+  addOns: string[];
 };
