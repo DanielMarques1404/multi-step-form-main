@@ -17,7 +17,7 @@ export type AddOnInfoType = {
   id: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   billingCycle: "Monthly" | "Yearly";
 };
 

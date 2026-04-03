@@ -13,7 +13,6 @@ export const BillingPlanInfo = ({
   plansList,
   changeBillingCycle,
 }: BillingPlanInfoProps) => {
-  // const [plans, setPlans] = useState<PlanInfoType[]>(plansList);
   const [selectedPlan, setSelectedPlan] = useState(plansList[0].id);
 
   const { register, setValue } = useFormContext<ApplicationData>();
@@ -22,18 +21,6 @@ export const BillingPlanInfo = ({
     setSelectedPlan(plansList[0].id);
     setValue("planId", plansList[0].id);
   }, [plansList]);
-
-  // const togglePlans = (value: string) => {
-  //   if (value === "Yearly") {
-  //     setPlans(yearlyPlans);
-  //     setSelectedPlan(yearlyPlans[0].id);
-  //     setValue("planId", yearlyPlans[0].id);
-  //   } else {
-  //     setPlans(monthlyPlans);
-  //     setSelectedPlan(monthlyPlans[0].id);
-  //     setValue("planId", monthlyPlans[0].id);
-  //   }
-  // };
 
   return (
     <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">

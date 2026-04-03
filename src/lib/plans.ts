@@ -54,3 +54,7 @@ const yearlyPro: PlanInfoType = {
 export const monthlyPlans = [monthlyArcade, monthlyAdvanced, monthlyPro];
 export const yearlyPlans = [yearlyArcade, yearlyAdvanced, yearlyPro];
 export const allBillingPlans = [...monthlyPlans, ...yearlyPlans];
+
+export const getPlanById = (id: string) => {
+    return allBillingPlans.find((plan) => plan.id === id);
+}

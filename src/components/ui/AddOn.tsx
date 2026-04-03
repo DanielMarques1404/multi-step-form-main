@@ -8,7 +8,6 @@ type AddOnProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const AddOn = ({ addon, isSelected, ...inputProps }: AddOnProps) => {
-
   return (
     <label
       className={cn(
@@ -37,7 +36,9 @@ export const AddOn = ({ addon, isSelected, ...inputProps }: AddOnProps) => {
         <h3 className="font-bold text-lg">{addon.name}</h3>
         <span className="text-Grey-500 font-semibold">{addon.description}</span>
       </div>
-      <p className="text-Blue-300">{addon.price}</p>
+      <p className="text-Blue-300">
+        {`+$${addon.price}/${addon.billingCycle === "Yearly" ? "yr" : "mo"}`}
+      </p>
     </label>
   );
 };
