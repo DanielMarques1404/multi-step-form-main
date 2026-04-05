@@ -23,7 +23,7 @@ function App() {
           <StepInfoBar step={step} />
         </div>
         <div className="absolute items-center justify-center top-30 z-99 w-3/5">
-          <ApplicationForm step={step}/>
+          <ApplicationForm step={step} changeStep={(newStep) => setStep(newStep)}/>
         </div>
         <div className="bg-Blue-50 w-full h-1/12">
           <StepNavigationBar changeStep={handleChangeStep} />

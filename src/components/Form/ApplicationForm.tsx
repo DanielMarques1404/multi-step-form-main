@@ -9,9 +9,10 @@ import { monthlyPlans, yearlyPlans } from "../../lib/plans";
 
 type ApplicationFormProps = {
   step: number;
+  changeStep: (step: number) => void;
 };
 
-export const ApplicationForm = ({ step }: ApplicationFormProps) => {
+export const ApplicationForm = ({ step, changeStep }: ApplicationFormProps) => {
   const form = useForm<ApplicationData>({
     defaultValues: {
       personalInfoType: {
@@ -39,6 +40,10 @@ export const ApplicationForm = ({ step }: ApplicationFormProps) => {
     setCycle(newCycle);
   };
 
+  const handleChangePlan = () => {
+    changeStep(2);
+  }
+
   return (
     <FormProvider {...form}>
       <form
@@ -53,7 +58,7 @@ export const ApplicationForm = ({ step }: ApplicationFormProps) => {
           />
         )}
         {step === 3 && <AddOnsInfo cycle={cycle} />}
-        {step === 4 && <Confirmation />}
+        {step === 4 && <Confirmation onChangePlan={handleChangePlan} />}
         {/* <ThakYou /> */}
       </form>
     </FormProvider>
