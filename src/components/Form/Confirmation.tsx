@@ -19,7 +19,7 @@ export const Confirmation = () => {
             <span className="text-start font-bold text-Blue-950 ">{`${plan!.kind} (${plan!.billingCycle})`}</span>
             <span className="text-start underline text-Grey-500 cursor-pointer">Change</span>
           </div>
-          <div className="flex w-1/5 font-bold text-Blue-950">{`$${plan!.price}/${plan!.billingCycle === "Yearly" ? "yr" : "mo"}`}</div>
+          <span className="font-bold text-Blue-950">{`$${plan!.price}/${plan!.billingCycle === "Yearly" ? "yr" : "mo"}`}</span>
         </div>
 
         <div className="w-full border border-gray-200"></div>

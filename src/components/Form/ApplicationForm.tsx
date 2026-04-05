@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { monthlyAddOns } from "../../lib/addons";
+import { monthlyPlans } from "../../lib/plans";
+import type { ApplicationData } from "../../types/types";
+import { AddOnsInfo } from "./AddOnsInfo";
 import { BillingPlanInfo } from "./BillingPlanInfo";
 import { PersonalInfo } from "./PersonalInfo";
-import { AddOnsInfo } from "./AddOnsInfo";
-import { allBillingPlans, monthlyPlans } from "../../lib/plans";
-import { allAddOns, monthlyAddOns } from "../../lib/addons";
-import type { PlanInfoType, AddOnInfoType, ApplicationData } from "../../types/types";
+import { Confirmation } from "./Confirmation";
 
-export const ApplicationForm = () => {
-  const [step, setStep] = useState(1);
-  const [billingPlans, setBillingPlans] = useState<PlanInfoType[]>(monthlyPlans);
-  const [addonsList, setAddonsList] = useState<AddOnInfoType[]>(monthlyAddOns);
+type ApplicationFormProps = {
+  step: number;
+};
 
-  const changeBillingCycle = (cycle: "Monthly" | "Yearly") => {
-    setBillingPlans(allBillingPlans.filter((plan) => plan.billingCycle === cycle));
-    setAddonsList(allAddOns.filter((addon) => addon.billingCycle === cycle));
-  }
-
+export const ApplicationForm = ({ step }: ApplicationFormProps) => {
   const form = useForm<ApplicationData>({
     defaultValues: {
       personalInfoType: {
@@ -35,18 +30,21 @@ export const ApplicationForm = () => {
 
   return (
     <FormProvider {...form}>
-      <div className="w-full">
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex gap-2 items-center justify-center"
-        >
-          {step === 1 && <PersonalInfo />}
-          {/* {step === 2 && <SelectPlan />} */}
-          <BillingPlanInfo plansList={billingPlans} changeBillingCycle={changeBillingCycle} />
-          <AddOnsInfo addonsList={addonsList} />
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-2 items-center justify-between w-full h-full"
+      >
+        {step === 1 && <PersonalInfo />}
+        {step === 2 && (
+          <BillingPlanInfo
+            plansList={monthlyPlans}
+            changeBillingCycle={() => console.log()}
+          />
+        )}
+        {step === 3 && <AddOnsInfo addonsList={monthlyAddOns} />}
+        {step === 4 && <Confirmation />}
+        {/* <ThakYou /> */}
+      </form>
     </FormProvider>
   );
 };
