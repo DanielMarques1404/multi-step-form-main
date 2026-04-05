@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { monthlyAddOns } from "../../lib/addons";
-import { monthlyPlans } from "../../lib/plans";
 import type { ApplicationData } from "../../types/types";
 import { AddOnsInfo } from "./AddOnsInfo";
 import { BillingPlanInfo } from "./BillingPlanInfo";
-import { PersonalInfo } from "./PersonalInfo";
 import { Confirmation } from "./Confirmation";
+import { PersonalInfo } from "./PersonalInfo";
+import { monthlyPlans, yearlyPlans } from "../../lib/plans";
 
 type ApplicationFormProps = {
   step: number;
@@ -24,8 +24,19 @@ export const ApplicationForm = ({ step }: ApplicationFormProps) => {
     },
   });
 
+  const [cycle, setCycle] = useState<"Monthly" | "Yearly">("Monthly");
+
+  useEffect(() => {
+    form.setValue("addOns", []);
+    form.setValue("planId", cycle === "Monthly" ? monthlyPlans[0].id : yearlyPlans[0].id);
+  }, [cycle]);
+
   const onSubmit = (data: ApplicationData) => {
     console.log(data);
+  };
+
+  const toggleBillingCycle = (newCycle: "Monthly" | "Yearly") => {
+    setCycle(newCycle);
   };
 
   return (
@@ -37,11 +48,11 @@ export const ApplicationForm = ({ step }: ApplicationFormProps) => {
         {step === 1 && <PersonalInfo />}
         {step === 2 && (
           <BillingPlanInfo
-            plansList={monthlyPlans}
-            changeBillingCycle={() => console.log()}
+            changeBillingCycle={toggleBillingCycle}
+            billingCycle={cycle}
           />
         )}
-        {step === 3 && <AddOnsInfo addonsList={monthlyAddOns} />}
+        {step === 3 && <AddOnsInfo cycle={cycle} />}
         {step === 4 && <Confirmation />}
         {/* <ThakYou /> */}
       </form>

@@ -1,32 +1,51 @@
 import { type InputHTMLAttributes } from "react";
+import { useFormContext } from "react-hook-form";
 import { cn } from "../../lib/cn";
-import type { AddOnInfoType } from "../../types/types";
+import type { AddOnInfoType, ApplicationData } from "../../types/types";
 
 type AddOnProps = InputHTMLAttributes<HTMLInputElement> & {
   addon: AddOnInfoType;
-  isSelected: boolean;
 };
 
-export const AddOn = ({ addon, isSelected, ...inputProps }: AddOnProps) => {
+export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
+  const { watch, setValue } = useFormContext<ApplicationData>();
+  const selectedAddOns = watch("addOns") || [];
+
+  const handleToggle = () => {
+    const isSelected = selectedAddOns.includes(addon.id);
+    if (isSelected) {
+      setValue(
+        "addOns",
+        selectedAddOns.filter((id) => id !== addon.id),
+      );
+    } else {
+      setValue("addOns", [...selectedAddOns, addon.id]);
+    }
+  };
+
   return (
     <label
       className={cn(
         "flex items-center justify-start gap-4 border border-Grey-500 rounded-md p-4 cursor-pointer",
-        isSelected && "border-Blue-950 border-2",
+        selectedAddOns.includes(addon.id) && "border-Blue-950 border-2",
       )}
+      onClick={(e) => {
+        e.preventDefault();
+        handleToggle();
+      }}
     >
       <input
-        {...inputProps}
         type="checkbox"
         id={addon.id}
         value={addon.id}
+        // checked={selectedAddOns.includes(addon.id)}
+        {...inputProps}
         className="hidden"
-        checked={isSelected}
       />
       <div
         className={cn(
           "flex items-center justify-center rounded-md w-9 h-7 border bg-none border-Grey-500",
-          isSelected && "bg-blue-600",
+          selectedAddOns.includes(addon.id) && "bg-blue-600",
         )}
       >
         <img src="/assets/images/icon-checkmark.svg" alt={addon.id} />

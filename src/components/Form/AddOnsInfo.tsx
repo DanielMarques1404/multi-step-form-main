@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
-import type { AddOnInfoType, ApplicationData } from "../../types/types";
+import { allAddOns } from "../../lib/addons";
+import type { AddOnInfoType } from "../../types/types";
 import { AddOn } from "../ui/AddOn";
 
 type AddOnsInfoProps = {
-  addonsList: AddOnInfoType[];
+  cycle: "Monthly" | "Yearly";
 };
 
-export const AddOnsInfo = ({ addonsList }: AddOnsInfoProps) => {
-  const [addons, setAddons] = useState<AddOnInfoType[]>(addonsList);
-
-  const { register, watch, setValue } = useFormContext<ApplicationData>();
-  const selectedAddOns = watch("addOns") || [];
-
-  useEffect(() => {
-    setAddons(addonsList);
-    setValue("addOns", []);
-  }, [addonsList]);
+export const AddOnsInfo = ({ cycle }: AddOnsInfoProps) => {
+  const addons: AddOnInfoType[] = allAddOns.filter(
+    (addon) => addon.billingCycle === cycle,
+  );
 
   return (
     <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">
@@ -26,11 +19,7 @@ export const AddOnsInfo = ({ addonsList }: AddOnsInfoProps) => {
         <ul className="flex flex-col gap-2">
           {addons.map((addon, idx) => (
             <li key={`addon-${idx}`} value={addon.id}>
-              <AddOn
-                {...register("addOns")}
-                addon={addon}
-                isSelected={selectedAddOns.includes(addon.id)}
-              />
+              <AddOn addon={addon} />
             </li>
           ))}
         </ul>

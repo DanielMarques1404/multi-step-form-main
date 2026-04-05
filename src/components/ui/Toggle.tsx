@@ -1,17 +1,17 @@
 import { useState } from "react";
 
 type ToggleProps = {
-  cycleDefault: "Monthly" | "Yearly";
-  onToggle: (cycle: "Monthly" | "Yearly") => void;
+  defaultValue: "Monthly" | "Yearly",
+  onToggle: (cycle: "Monthly" | "Yearly") => void,
 };
 
-export const Toggle = (props: ToggleProps) => {
-  const [cycle, setCycle] = useState<"Monthly" | "Yearly">(props.cycleDefault);
+export const Toggle = ({ defaultValue, onToggle }: ToggleProps) => {
+  const [cycle, setCycle] = useState<"Monthly" | "Yearly">(defaultValue);
 
   const toggle = () => {
     const newCycle = cycle === "Monthly" ? "Yearly" : "Monthly";
     setCycle(newCycle);
-    props.onToggle(newCycle);
+    onToggle(newCycle);
   };
 
   return (

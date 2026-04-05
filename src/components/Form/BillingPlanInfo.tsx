@@ -1,26 +1,20 @@
-import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import type { ApplicationData, PlanInfoType } from "../../types/types";
 import { BillingPlan } from "../ui/BillingPlan";
 import { Toggle } from "../ui/Toggle";
+import { allBillingPlans } from "../../lib/plans";
 
 type BillingPlanInfoProps = {
-  plansList: PlanInfoType[];
+  billingCycle: "Monthly" | "Yearly";
   changeBillingCycle: (cycle: "Monthly" | "Yearly") => void;
 };
 
 export const BillingPlanInfo = ({
-  plansList,
+  billingCycle,
   changeBillingCycle,
 }: BillingPlanInfoProps) => {
-  const [selectedPlan, setSelectedPlan] = useState(plansList[0].id);
-
-  const { register, setValue } = useFormContext<ApplicationData>();
-
-  useEffect(() => {
-    setSelectedPlan(plansList[0].id);
-    setValue("planId", plansList[0].id);
-  }, [plansList]);
+  const { register } = useFormContext<ApplicationData>();
+  const plansList: PlanInfoType[] = allBillingPlans.filter(plan => plan.billingCycle === billingCycle)
 
   return (
     <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">
@@ -30,19 +24,11 @@ export const BillingPlanInfo = ({
         <ul className="flex flex-col gap-2">
           {plansList.map((plan, idx) => (
             <li key={`plan-${idx}`} value={plan.id}>
-              <BillingPlan
-                {...register("planId")}
-                plan={plan}
-                selected={plan.id === selectedPlan}
-                onselect={setSelectedPlan}
-              />
+              <BillingPlan {...register("planId")} plan={plan} />
             </li>
           ))}
         </ul>
-        <Toggle
-          cycleDefault={plansList[0].billingCycle}
-          onToggle={changeBillingCycle}
-        />
+        <Toggle defaultValue={billingCycle} onToggle={changeBillingCycle} />
       </div>
     </section>
   );
