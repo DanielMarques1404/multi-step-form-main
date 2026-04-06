@@ -17,10 +17,10 @@ export const BillingPlanInfo = ({
   const plansList: PlanInfoType[] = allBillingPlans.filter(plan => plan.billingCycle === billingCycle)
 
   return (
-    <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">
+    <section className="grid grid-rows-[auto_auto_1fr] gap-3 items-start bg-White p-6 rounded-lg w-full">
       <h1>Select your plan</h1>
       <p>You have the option of monthly or yearly billing.</p>
-      <div className="flex flex-col gap-2 w-full">
+      <div className="grid grid-rows-[1fr_auto] gap-2 w-full">
         <ul className="flex flex-col gap-2">
           {plansList.map((plan, idx) => (
             <li key={`plan-${idx}`} value={plan.id}>

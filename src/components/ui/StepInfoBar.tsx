@@ -20,7 +20,7 @@ export const StepInfoBar = ({ step }: NavBarProps) => {
           <li
             key={`step-${s}`}
             className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-              currentStep === s
+              Math.min(currentStep, 4) === s
                 ? "bg-Blue-200 text-Blue-950"
                 : "border-2 border-Blue-300 text-Blue-300 bg-transparent"
             }`}

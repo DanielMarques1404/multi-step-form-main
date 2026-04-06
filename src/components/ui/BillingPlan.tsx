@@ -13,7 +13,7 @@ export const BillingPlan = ({ plan, ...inputProps }: BillingPlanProps) => {
   return (
     <label
       className={cn(
-        "flex items-center justify-start gap-4 border border-Grey-500 rounded-md p-4",
+        "flex items-center justify-start gap-4 border border-Grey-500 rounded-md px-4 py-2 hover:border-2 hover:border-Blue-950 cursor-pointer",
         watch("planId") === plan.id && "border-Blue-950 border-2",
       )}
     >
@@ -31,7 +31,7 @@ export const BillingPlan = ({ plan, ...inputProps }: BillingPlanProps) => {
           ${plan.price}/{plan.billingCycle === "Yearly" ? "yr" : "mo"}
         </p>
         {plan.trialPeriod && (
-          <p className="text-Grey-500 font-semibold">{plan.trialPeriod}</p>
+          <span className="text-Blue-950 font-bold">{plan.trialPeriod}</span>
         )}
       </div>
     </label>

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { BILLING_PLAN_STEP, THANK_YOU_STEP } from "../../lib/utils";
 import type { ApplicationData } from "../../types/types";
 import { AddOnsInfo } from "./AddOnsInfo";
 import { BillingPlanInfo } from "./BillingPlanInfo";
 import { Confirmation } from "./Confirmation";
 import { PersonalInfo } from "./PersonalInfo";
+import { ThankYou } from "./ThankYouForm";
 import { monthlyPlans, yearlyPlans } from "../../lib/plans";
+import { FormProvider, useForm, useFormContext } from "react-hook-form";
 
 type ApplicationFormProps = {
   step: number;
@@ -41,8 +43,8 @@ export const ApplicationForm = ({ step, changeStep }: ApplicationFormProps) => {
   };
 
   const handleChangePlan = () => {
-    changeStep(2);
-  }
+    changeStep(BILLING_PLAN_STEP);
+  };
 
   return (
     <FormProvider {...form}>
@@ -59,7 +61,7 @@ export const ApplicationForm = ({ step, changeStep }: ApplicationFormProps) => {
         )}
         {step === 3 && <AddOnsInfo cycle={cycle} />}
         {step === 4 && <Confirmation onChangePlan={handleChangePlan} />}
-        {/* <ThakYou /> */}
+        {step === THANK_YOU_STEP && <ThankYou />}
       </form>
     </FormProvider>
   );

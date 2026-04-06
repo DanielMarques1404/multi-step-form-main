@@ -26,7 +26,7 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
   return (
     <label
       className={cn(
-        "flex items-center justify-start gap-4 border border-Grey-500 rounded-md p-4 cursor-pointer",
+        "grid grid-cols-[auto_1fr_auto] items-center justify-start gap-4 border border-Grey-500 rounded-md p-3 hover:border-2 hover:border-Blue-950 cursor-pointer",
         selectedAddOns.includes(addon.id) && "border-Blue-950 border-2",
       )}
       onClick={(e) => {
@@ -38,13 +38,13 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
         type="checkbox"
         id={addon.id}
         value={addon.id}
-        // checked={selectedAddOns.includes(addon.id)}
         {...inputProps}
         className="hidden"
       />
+
       <div
         className={cn(
-          "flex items-center justify-center rounded-md w-9 h-7 border bg-none border-Grey-500",
+          "flex items-center justify-center rounded-md w-7 h-7 border bg-none border-Grey-500",
           selectedAddOns.includes(addon.id) && "bg-blue-600",
         )}
       >
@@ -55,9 +55,10 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
         <h3 className="font-bold text-lg">{addon.name}</h3>
         <span className="text-Grey-500 font-semibold">{addon.description}</span>
       </div>
-      <p className="text-Blue-300">
+
+      <span className="text-Blue-300">
         {`+$${addon.price}/${addon.billingCycle === "Yearly" ? "yr" : "mo"}`}
-      </p>
+      </span>
     </label>
   );
 };

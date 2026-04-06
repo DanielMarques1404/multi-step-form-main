@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 type ToggleProps = {
-  defaultValue: "Monthly" | "Yearly",
-  onToggle: (cycle: "Monthly" | "Yearly") => void,
+  defaultValue: "Monthly" | "Yearly";
+  onToggle: (cycle: "Monthly" | "Yearly") => void;
 };
 
 export const Toggle = ({ defaultValue, onToggle }: ToggleProps) => {
@@ -15,7 +15,10 @@ export const Toggle = ({ defaultValue, onToggle }: ToggleProps) => {
   };
 
   return (
-    <div className="flex gap-2 items-center justify-center bg-Blue-100 w-full rounded-md h-24">
+    <div
+      className="flex gap-2 items-center justify-center bg-Blue-100 w-full rounded-md py-4 cursor-pointer"
+      onClick={() => toggle()}
+    >
       <span
         className={
           cycle === "Monthly"
@@ -25,10 +28,7 @@ export const Toggle = ({ defaultValue, onToggle }: ToggleProps) => {
       >
         Monthly
       </span>
-      <div
-        className="relative w-10 rounded-full border bg-Blue-950 h-5"
-        onClick={() => toggle()}
-      >
+      <div className="relative w-10 rounded-full border bg-Blue-950 h-5">
         <div
           className={`absolute top-px w-4 h-4 rounded-full bg-white cursor-pointer transition-transform ${cycle === "Monthly" ? "translate-x-0.5" : "translate-x-5"}`}
         />
