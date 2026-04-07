@@ -26,6 +26,10 @@ export const PersonalInfo = () => {
           placeholder="e.g. stephenking@lorem.com"
           {...register("personalInfoType.email", {
             required: "This field is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Please enter a valid email address",
+            },
           })}
           errors={errors.personalInfoType?.email}
         />
@@ -34,6 +38,11 @@ export const PersonalInfo = () => {
           placeholder="e.g. +1 234 567 890"
           {...register("personalInfoType.phone", {
             required: "This field is required",
+            pattern: {
+              value: /^\+\d{1,3}\s\d{3}\s\d{3}\s\d{3}$/,
+              message:
+                "Please enter a valid phone number (e.g. +1 234 567 890)",
+            },
           })}
           errors={errors.personalInfoType?.phone}
         />
