@@ -28,7 +28,7 @@ body {
 }
 
 p {
-  @apply font-ubuntu text-Grey-500 text-lg text-start;
+  @apply font-ubuntu text-Grey-500 text-lg ;
 }
 
 h1 {
@@ -40,6 +40,6 @@ h2 {
 }
 
 h3 {
-  @apply text-xl font-bold text-Blue-950;
+  @apply text-lg font-bold text-Blue-950;
 }
 

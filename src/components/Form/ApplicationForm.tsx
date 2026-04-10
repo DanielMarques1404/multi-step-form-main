@@ -37,23 +37,23 @@ export const ApplicationForm = ({ step, changeStep }: ApplicationFormProps) => {
   };
 
   const handleChangePlan = () => {
-    changeStep(BILLING_PLAN_STEP);
+    changeStep(BILLING_PLAN_STEP.id);
   };
 
   return (
     <section>
-      {step === PERSONAL_INFO_STEP && <PersonalInfo />}
-      {step === BILLING_PLAN_STEP && (
+      {step === PERSONAL_INFO_STEP.id && <PersonalInfo />}
+      {step === BILLING_PLAN_STEP.id && (
         <BillingPlanInfo
           changeBillingCycle={toggleBillingCycle}
           billingCycle={cycle}
         />
       )}
-      {step === ADD_ONS_STEP && <AddOnsInfo cycle={cycle} />}
-      {step === CONFIRMATION_STEP && (
+      {step === ADD_ONS_STEP.id && <AddOnsInfo cycle={cycle} />}
+      {step === CONFIRMATION_STEP.id && (
         <Confirmation onChangePlan={handleChangePlan} />
       )}
-      {step === THANK_YOU_STEP && <ThankYou />}
+      {step === THANK_YOU_STEP.id && <ThankYou />}
     </section>
   );
 };

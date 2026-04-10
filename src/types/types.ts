@@ -26,3 +26,8 @@ export type ApplicationData = {
   planId: string;
   addOns: string[];
 };
+
+export type StepType = {
+  id: number;
+  title: string;
+}

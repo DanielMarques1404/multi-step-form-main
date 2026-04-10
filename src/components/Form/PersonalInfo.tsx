@@ -9,9 +9,11 @@ export const PersonalInfo = () => {
   } = useFormContext<ApplicationData>();
 
   return (
-    <section className="flex flex-col gap-3 items-start bg-White p-6 rounded-lg w-full">
-      <h1>Personal info</h1>
-      <p>Please provide your name, email address and phone number.</p>
+    <section className="flex flex-col items-start bg-White p-6 rounded-lg w-full">
+      <div className="flex flex-col items-start mb-8">
+        <h1>Personal info</h1>
+        <p className="text-start">Please provide your name, email address and phone number.</p>
+      </div>
       <div className="flex flex-col gap-2 w-full">
         <Input
           label={"Name"}

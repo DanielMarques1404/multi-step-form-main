@@ -26,7 +26,7 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
   return (
     <label
       className={cn(
-        "grid grid-cols-[auto_1fr_auto] items-center justify-start gap-4 border border-Grey-500 rounded-md p-3 hover:border-2 hover:border-Blue-950 cursor-pointer",
+        "grid grid-cols-[20px_200px_50px] items-center justify-start gap-4 border border-Grey-500 rounded-md px-2 py-3 hover:border-2 hover:border-Blue-950 cursor-pointer",
         selectedAddOns.includes(addon.id) && "border-Blue-950 border-2",
       )}
       onClick={(e) => {
@@ -53,10 +53,10 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
 
       <div className="flex flex-col items-start">
         <h3 className="font-bold text-lg">{addon.name}</h3>
-        <span className="text-Grey-500 font-semibold">{addon.description}</span>
+        <span className="text-Grey-500 font-semibold text-start text-xs">{addon.description}</span>
       </div>
 
-      <span className="text-Blue-300">
+      <span className="text-blue-600 font-semibold">
         {`+$${addon.price}/${addon.billingCycle === "Yearly" ? "yr" : "mo"}`}
       </span>
     </label>
