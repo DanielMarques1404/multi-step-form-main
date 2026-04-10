@@ -11,13 +11,7 @@ export const Input = (props: InputProps) => {
   const [focus, setFocus] = useState(false);
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-start gap-1 border border-Grey-500 p-2 rounded-md w-full focus:border-Blue-300",
-        focus ? "border-Blue-950 border-2" : "",
-        props.errors ? "border-Red-500 border-2" : "",
-      )}
-    >
+    <div className="flex flex-col items-start gap-1 p-2 rounded-md w-full">
       <div className="flex items-center justify-between w-full">
         <label htmlFor={props.id}>{props.label}</label>
         {props.errors && (
@@ -26,15 +20,23 @@ export const Input = (props: InputProps) => {
           </label>
         )}
       </div>
-      <input
-        {...props}
+      <div
         className={cn(
-          "w-full font-ubuntu text-Blue-950 font-semibold placeholder:text-Grey-500 px-2 py-1 placeholder:font-semibold focus:outline-none focus:ring-0 ",
-          props.className ?? "",
+          "flex items-start border border-Grey-500 p-2 rounded-md w-full focus:border-Blue-300 ",
+          focus ? "border-Blue-950 border-2" : "",
+          props.errors ? "border-Red-500 border-2" : "hover:border-Blue-950 hover:border-2",
         )}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-      />
+      >
+        <input
+          {...props}
+          className={cn(
+            "w-full font-ubuntu text-Blue-950 font-semibold placeholder:text-Grey-500 px-2 py-1 placeholder:font-semibold focus:outline-none focus:ring-0 ",
+            props.className ?? "",
+          )}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+        />
+      </div>
     </div>
   );
 };
