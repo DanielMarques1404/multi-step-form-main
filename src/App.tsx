@@ -64,8 +64,8 @@ function App() {
             <nav className="h-43 md:w-60 md:h-121.25 bg-[url(./assets/images/bg-sidebar-mobile.svg)] md:bg-[url(./assets/images/bg-sidebar-desktop.svg)] bg-contain bg-center bg-no-repeat">
               <StepInfoBar step={step} />
             </nav>
-            <section className="grid grid-rows-[31rem_3rem] md:grid-rows-[26rem_4rem] h-full">
-              <main className="relative md:static flex items-center justify-center md:mx-24 bg-Blue-100">
+            <section className="grid grid-rows-[30rem_4rem] md:grid-rows-[26rem_4rem] h-full">
+              <main className="relative md:static flex items-center justify-center md:mx-24 bg-Blue-100 md:bg-White">
                 <div className="absolute -top-18 md:static w-[90%] md:w-full">
                   <ApplicationForm
                     step={step}
