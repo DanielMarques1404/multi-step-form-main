@@ -26,7 +26,7 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
   return (
     <label
       className={cn(
-        "grid grid-cols-[20px_200px_50px] items-center justify-start gap-4 border border-Grey-500 rounded-md px-2 py-3 hover:border-2 hover:border-Blue-950 cursor-pointer",
+        "flex items-center justify-between border border-Grey-500 rounded-md px-2 py-3 md:px-5 hover:border-2 hover:border-Blue-950 cursor-pointer",
         selectedAddOns.includes(addon.id) && "border-Blue-950 border-2",
       )}
       onClick={(e) => {
@@ -42,9 +42,10 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
         className="hidden"
       />
 
-      <div
+      <div className="flex items-center gap-3">
+        <div
         className={cn(
-          "flex items-center justify-center rounded-md w-7 h-7 border bg-none border-Grey-500",
+          "flex items-center justify-center rounded-md w-5 h-5 border bg-none border-Grey-500",
           selectedAddOns.includes(addon.id) && "bg-blue-600",
         )}
       >
@@ -53,7 +54,8 @@ export const AddOn = ({ addon, ...inputProps }: AddOnProps) => {
 
       <div className="flex flex-col items-start">
         <h3 className="font-bold text-lg">{addon.name}</h3>
-        <span className="text-Grey-500 font-semibold text-start text-xs">{addon.description}</span>
+        <span className="text-Grey-500 font-semibold text-start text-[12px]">{addon.description}</span>
+      </div>
       </div>
 
       <span className="text-blue-600 font-semibold">

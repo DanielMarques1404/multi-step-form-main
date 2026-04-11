@@ -13,7 +13,7 @@ export const StepNavigationBar = ({
     <section className="flex w-full items-center justify-between px-6 py-2 h-full">
       {step !== PERSONAL_INFO_STEP.id ? (
         <span
-          className="cursor-pointer text-Grey-500 hover:text-Blue-950 font-bold"
+          className="cursor-pointer text-Grey-500 hover:text-Blue-950 font-bold select-none"
           onClick={() => changeStep("Back")}
         >
           Go Back

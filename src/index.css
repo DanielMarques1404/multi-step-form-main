@@ -20,11 +20,10 @@
 
 * {
   list-style: none;
-  font-size: 16px;
 }
 
 body {
-  @apply bg-Blue-100;
+  @apply bg-White;
 }
 
 p {
