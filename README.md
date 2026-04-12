@@ -41,7 +41,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [@github](https://github.com/DanielMarques1404/multi-step-form-main)
-- Live Site URL: [@multi-step-form](https://multi-step-form-main-r83sdtztu-danielmarques1404s-projects.vercel.app/)
+- Live Site URL: [@multi-step-form](https://multi-step-form-main-ruby.vercel.app/)
 
 ## My process
 
